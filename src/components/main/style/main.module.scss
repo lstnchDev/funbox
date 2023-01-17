@@ -1,0 +1,11 @@
+@font-face {
+    font-family: "exo2";
+    font-weight: 900;
+    src: local('exo2'), url(../../../fonts/exo2_0_regular.otf) format("opentype");
+}
+
+h1{
+    font-size: 36px;
+    color: #FFFFFF;
+    font-family: exo2;
+}
