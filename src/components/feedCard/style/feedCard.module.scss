@@ -1,148 +1,178 @@
-@function setColor($color){
-    $border_color: $color;
-    @return $border_color
+$default_color: #1698d9;
+$hover_color: #2ea8e6;
+$selected_color: #d91667;
+$selected_hover: #e52e7a;
+$disabled_color: #b3b3b3;
+
+@mixin border_box($color) {
+  border-color: $color;
+  .feed_bottom {
+    .weight_container {
+      background: $color;
+    }
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    right: 250px;
+    width: 92px;
+    height: 4px;
+    background: $color;
+    transform: rotate(123deg);
+  }
 }
-$default_color: #1698D9;
-$hover_color: #2EA8E6;
-$selected_color: #D91667;
-$selected_hover: #E52E7A;
-$disabled_color: #B3B3B3;
 
-.feed_container{
-    width: 320px;
-    font-family: 'Trebuchet MS';
-    .feed_box{
-        background: #FFFFFF;
-        border: 4px solid $default_color;
-        border-radius: 12px;
-        margin: 24px 0 14px;
-        clip-path: polygon(10% 0%, 80% 0%, 100% 0, 100% 80%, 100% 100%, 0 100%, 0% 80%, 0% 10%);
-      
-        img{
-            border-radius: 7px;
-        }
-        .feed_content{
-            padding: 21px 50px;
-            text-align: start;
-            h4{
-                font-size: 16px;
-                font-weight: 400;
-                color: #666666;
-                margin: 0;
-    
-            }
-            h1{
-                font-size: 48px;
-                font-weight: 700;
-                color: #000000;
-                margin: 0;
-    
-            }
-            h2{
-                font-size: 24px;
-                font-weight: 700;
-                color: #000000;
-                margin: 0;
-    
-            }
-            p{
-                font-size: 14px;
-                font-weight: 400;
-                color: #666666;
-                margin: 0;
-                .count{
-                    font-weight: 700;
-                }
-            }
-        }
-        .feed_bottom{
-            display: flex;
-            position: relative;
-            
-            .weight{
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                font-size: 21px;
-                font-weight: 400;
-                text-align: center;
-                background: $default_color;       
-                padding: 8px ;
-                color: #FFFFFF;
-                width: 80px;
-                height: 80px;
-                border-radius: 50%;
-                top: 53%;
-                left: 65%;
-                span{
-                    font-size: 42px;
-                    font-weight: 400;
-                }
-            }
-        }
-        &:hover{
-            border-color: $hover_color;
-            .weight{
-                background: $hover_color;       
-            }
-            .btnBuy{
-                color: $hover_color;
+.feed_container {
+  width: 320px;
+  font-family: "Trebuchet MS";
 
-            }
-            cursor: pointer;
-        }
+  .feed_box {
+    background: #ffffff;
+    border: 4px solid $default_color;
+    border-radius: 12px;
+    margin: 24px 0 14px;
+    position: relative;
+    height: 480px;
+
+    clip-path: polygon(
+      10% 0%,
+      80% 0%,
+      100% 0,
+      100% 80%,
+      100% 100%,
+      0 100%,
+      0% 80%,
+      0% 10%
+    );
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 15px;
+      right: 250px;
+      width: 92px;
+      height: 4px;
+      background: $default_color;
+      transform: rotate(123deg);
     }
-    .description{
-        color: #FFFFFF;
-        font-size: 13px;
+    .overlay {
+      background-color: #f2f2f2;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      opacity: 60%;
+    }
+    img {
+      border-radius: 7px;
+    }
+    .feed_content {
+      padding: 21px 48px 35px;
+      text-align: start;
+      h4 {
+        font-size: 16px;
         font-weight: 400;
-        .btnBuy{
-            color: $default_color;
-            cursor: pointer;
-            text-decoration: underline;        
-            text-decoration-style: dotted;
-        }
-    }
-    .disabledDescription{
-        color: #FFFF66;
-        font-size: 13px;
+        color: #666666;
+        margin: 0;
+      }
+      .title {
+        font-size: 48px;
+        font-weight: 700;
+        color: #000000;
+        margin-top: 15px;
+      }
+      .composition {
+        font-size: 24px;
+        font-weight: 700;
+        color: #000000;
+        margin-bottom: 15px;
+      }
+      p {
+        font-size: 14px;
         font-weight: 400;
+        color: #666666;
+        margin: 0;
+        .count {
+          font-weight: 700;
+        }
+      }
+    }
+    .feed_bottom {
+      display: flex;
+      position: relative;
+      img {
+        height: 260px;
+      }
+      .weight_container {
+        box-sizing: border-box;
+        position: absolute;
+        background: $default_color;
+        border-radius: 50%;
+        width: 80px;
+        height: 80px;
+        top: 65%;
+        left: 70%;
+        .weight {
+          display: flex;
+          flex-direction: column;
+          margin: 0;
+          font-size: 21px;
+          font-weight: 400;
+          color: #ffffff;
+          padding: 5px 0;
 
+          .weight_count {
+            font-size: 42px;
+            font-weight: 400;
+          }
+        }
+      }
     }
-    .disabled{
-        border-color: $disabled_color;
-        .feed_bottom{
-            .weight{
-                background: $disabled_color;       
-            }
-        }
-        pointer-events: none;
-        &::after{
-            content: "";
-            background-color: #F2F2F2;
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 60%;
-    
-        }
+    &:hover {
+      @include border_box($hover_color);
+      cursor: pointer;
     }
-    .selected{
-        border-color: $selected_color;
-        .feed_bottom{
-            .weight{
-                background: $selected_color;       
-            }
-        }
-      
-
-        &:hover{
-            border-color: $selected_hover;
-            .weight{
-                background: $selected_hover;       
-            }
-        }
+    &:hover ~ .description_container {
+      .btnBuy {
+        color: $hover_color;
+      }
     }
+  }
+  .description {
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 400;
+    .btnBuy {
+      color: $default_color;
+      cursor: pointer;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+    }
+    .btnBuy:hover {
+      color: $hover_color;
+    }
+  }
+  .disabledDescription {
+    color: #ffff66;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .selected {
+    @include border_box($selected_color);
+    &:hover {
+      @include border_box($selected_hover);
+    }
+  }
+  .hoverSelected {
+    &:hover {
+      @include border_box($selected_color);
+    }
+  }
+  .disabled {
+    @include border_box($disabled_color);
+    pointer-events: none;
+  }
 }

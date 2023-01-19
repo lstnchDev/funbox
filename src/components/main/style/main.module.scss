@@ -1,40 +1,41 @@
 @font-face {
-    font-family: "exo2";
-    font-weight: 900;
-    src: local('exo2'), url(../../../fonts/Exo2.0-Thin.otf) format("opentype");
+  font-family: "exo2";
+  font-weight: 900;
+  src: local("exo2"), url(../../../fonts/Exo2.0-Thin.otf) format("opentype");
 }
 
-.main_container{
-    background: url(../../../../src/images/Pattern.svg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+.main_container {
+  background: url(../../../../src/images/funboxbg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+
+  .title {
+    font-size: 36px;
+    color: #ffffff;
+    font-family: exo2;
+    margin: 0;
+  }
+  .feedCards {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    margin: 0 auto;
     justify-content: center;
 
-      .title{
-        font-size: 36px;
-        color: #FFFFFF;
-        font-family: exo2;
-        margin: 0;
+    & > div:first-child {
+      margin-left: 0;
     }
-    .feedCards{
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto;
-        justify-content: center;
-        &>div:first-child{
-            margin-left: 0;
-        }
-        &>div{
-            margin-left: 80px;
-        }
-        @media (max-width: 740px) {
-            &>div{
-                margin-left: 0;
-            }
-        }
+    & > div {
+      margin-left: 80px;
     }
+    @media (max-width: 740px) {
+      & > div {
+        margin-left: 0;
+      }
+    }
+  }
 }
-
